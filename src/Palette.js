@@ -10,7 +10,7 @@ export default class Palette extends Component {
         <div className="Palette">
           <div className="Palette-colors">{
               this.props.colors.map((color,i)=>{
-                  return <ColorBox color={color} key={i}/>
+                  return <ColorBox background={color.color} name={color.name} key={i}/>
               })
           }</div>
         </div>
