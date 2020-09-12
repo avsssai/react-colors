@@ -8,14 +8,19 @@ class App extends Component {
 
   render () {
     console.log(generatePalette(seedColors[4]));
+    let findPalette = (id) => {
+      return seedColors.find((palette) => {
+        return palette.id === id;
+      })
+    }
     return (
       <div>
         {/* <Palette palette={generatePalette(seedColors[4])} /> */}
 
         <Switch>
           <Route exact path="/" render={() => <h1>Main page</h1>} />
-          <Route exact path="/:palette" render={(renderProps) => <Palette palette={generatePalette(seedColors[4])} {...renderProps} />} />
-          <Route exact path="/:palette/:id" render={(renderProps) => <h1>Individual Palette</h1>} />
+          <Route exact path="/palette/:id" render={(routeProps) => <Palette palette={generatePalette(findPalette(routeProps.match.params.id))} {...routeProps} />} />
+          {/* <Route exact path="/:palette/:id" render={(routeProps) => <h1>Individual Palette</h1>} /> */}
         </Switch>
       </div>
     )
