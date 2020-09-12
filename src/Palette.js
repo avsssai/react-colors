@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import NavBar from './NavBar';
 import ColorBox from "./ColorBox";
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
 import "./Palette.css";
 
 export default class Palette extends Component {
@@ -8,27 +12,36 @@ export default class Palette extends Component {
     super(props);
     this.state = {
       level: 500,
-      colorFormat:'rgb'
+      colorFormat: 'rgb',
+      snackbarOpen: false
     };
     this.handleOnAfterChange = this.handleOnAfterChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSnackbarClose = this.handleSnackbarClose.bind(this);
   }
-  handleOnAfterChange(level) {
-    this.setState({level})
+  handleOnAfterChange (level) {
+    this.setState({ level })
   }
-  handleChange(format){
+  handleChange (format) {
     this.setState({
-      colorFormat:format
+      colorFormat: format,
+      snackbarOpen: true
     })
   }
-  render() {
+  handleSnackbarClose () {
+    this.setState({
+      snackbarOpen: false
+    })
+  }
+
+  render () {
     const { palette } = this.props;
     let { level, colorFormat } = this.state;
     console.log(this.state.level);
     return (
       <div>
         {/* Header/Nav component goes here */}
-        <NavBar level={level} handleOnAfterChange={this.handleOnAfterChange} colorFormat={colorFormat} handleChange={this.handleChange}/>
+        <NavBar level={level} handleOnAfterChange={this.handleOnAfterChange} colorFormat={colorFormat} handleChange={this.handleChange} />
         <div className="Palette">
           <div className="Palette-colors">
             {palette.colors[level].map((color, i) => {
@@ -38,6 +51,22 @@ export default class Palette extends Component {
             })}
           </div>
         </div>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left'
+          }}
+          autoHideDuration={4000}
+          open={this.state.snackbarOpen}
+          onClose={this.handleSnackbarClose}
+          message={`Format changed to ${colorFormat.toUpperCase()}`}
+          action={
+            <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          }
+        />
+
         {/* Footer goes here */}
       </div>
     );
