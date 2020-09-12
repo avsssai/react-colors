@@ -41,8 +41,8 @@ export default class Palette extends Component {
     return (
       <div>
         {/* Header/Nav component goes here */}
-        <NavBar level={level} handleOnAfterChange={this.handleOnAfterChange} colorFormat={colorFormat} handleChange={this.handleChange} />
         <div className="Palette">
+          <NavBar level={level} handleOnAfterChange={this.handleOnAfterChange} colorFormat={colorFormat} handleChange={this.handleChange} />
           <div className="Palette-colors">
             {palette.colors[level].map((color, i) => {
               return (
@@ -50,24 +50,31 @@ export default class Palette extends Component {
               );
             })}
           </div>
-        </div>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left'
-          }}
-          autoHideDuration={4000}
-          open={this.state.snackbarOpen}
-          onClose={this.handleSnackbarClose}
-          message={`Format changed to ${colorFormat.toUpperCase()}`}
-          action={
-            <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          }
-        />
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left'
+            }}
+            autoHideDuration={4000}
+            open={this.state.snackbarOpen}
+            onClose={this.handleSnackbarClose}
+            message={`Format changed to ${colorFormat.toUpperCase()}`}
+            action={
+              <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            }
+          />
 
-        {/* Footer goes here */}
+          {/* Footer goes here */}
+          <footer className="footer">
+            <div className="footer-content">
+              <span className="palette-name">{palette.paletteName}</span>
+              <span className="palette-emoji">{palette.emoji}</span>
+            </div>
+          </footer>
+        </div>
+
       </div>
     );
   }
