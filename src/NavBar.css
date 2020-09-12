@@ -10,8 +10,10 @@
     margin-right: 20px;
     background: #eeeeee;
     font-weight: 500;
-    /* height: 100%;
-    font-family: roboto; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: roboto;    
 }
 .level {
     font-weight: 400;
