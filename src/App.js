@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PaletteList from './PaletteList';
 import Palette from './Palette';
 import seedColors from './colors-seeder';
 import { generatePalette } from './colorHelpers';
@@ -13,12 +14,17 @@ class App extends Component {
         return palette.id === id;
       })
     }
+    let linksOnly = (arr) => {
+      return arr.reduce((acc, el) => {
+        return acc.concat({ paletteName: el.paletteName, id: el.id })
+      }, [])
+    }
     return (
       <div>
         {/* <Palette palette={generatePalette(seedColors[4])} /> */}
 
         <Switch>
-          <Route exact path="/" render={() => <h1>Main page</h1>} />
+          <Route exact path="/" render={(renderParams) => <PaletteList links={linksOnly(seedColors)} {...renderParams} />} />
           <Route exact path="/palette/:id" render={(routeProps) => <Palette palette={generatePalette(findPalette(routeProps.match.params.id))} {...routeProps} />} />
           {/* <Route exact path="/:palette/:id" render={(routeProps) => <h1>Individual Palette</h1>} /> */}
         </Switch>
