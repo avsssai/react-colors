@@ -11,13 +11,12 @@ const styles = {
         overflow: "hidder",
         "&:hover": {
             cursor: "pointer"
-        }
-
+        },
     },
     colors: {
         backgroundColor: "grey",
-
-
+    },
+    colorBox: {
     },
     title: {
         display: "flex",
@@ -34,11 +33,13 @@ const styles = {
     }
 }
 function MiniPalette (props) {
-    const { classes, paletteName, emoji } = props;
+    const { classes, paletteName, emoji, colors } = props;
     return (
         <div className={classes.root}>
             <div className={classes.colors}>
-
+                {colors.map((color, i) => {
+                    return <div className={classes.colorBox} style={{ backgroundColor: color.color }}></div>
+                })}
             </div>
             <h5 className={classes.title}>{paletteName} <span className={classes.emoji}>{emoji}</span></h5>
         </div>
