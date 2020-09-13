@@ -20,6 +20,7 @@ export default class NavBar extends Component {
     this.setState({
       colorFormat: e.target.value
     })
+    console.log(e.target.value);
     this.props.handleChange(e.target.value);
   }
   render () {
@@ -47,8 +48,8 @@ export default class NavBar extends Component {
         <div className="select-container">
           <Select onChange={this.handleChange} value={this.state.colorFormat}>
             <MenuItem value='hex'>Hex - #ffffff</MenuItem>
-            <MenuItem value='rgb'>RGB - (10,20,30)</MenuItem>
-            <MenuItem value='rgba'>RGBA - (33.3,40,32,1.0)</MenuItem>
+            <MenuItem value='rgb'>RGB - (255,255,255)</MenuItem>
+            <MenuItem value='rgba'>RGBA - (255,255,255,1.0)</MenuItem>
           </Select>
         </div>
       </nav>

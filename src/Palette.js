@@ -12,7 +12,7 @@ export default class Palette extends Component {
     super(props);
     this.state = {
       level: 500,
-      colorFormat: 'rgb',
+      colorFormat: 'hex',
       snackbarOpen: false
     };
     this.handleOnAfterChange = this.handleOnAfterChange.bind(this);
