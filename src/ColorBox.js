@@ -10,6 +10,7 @@ export default class ColorBox extends Component {
       copied: false
     };
     this.changeCopyState = this.changeCopyState.bind(this);
+    this.handleMoreClick = this.handleMoreClick.bind(this);
   }
   changeCopyState() {
     this.setState(
@@ -23,10 +24,12 @@ export default class ColorBox extends Component {
    
   }
 
-  
+  handleMoreClick(e) {
+    e.stopPropagation();
+  }
   
   render() {
-    const { background, name ,moreUrl} = this.props;
+    const { background, name ,moreUrl,showLink} = this.props;
     let {copied} = this.state;
     return (
       <CopyToClipboard text={background} onCopy={this.changeCopyState}>
@@ -42,9 +45,12 @@ export default class ColorBox extends Component {
             </div>
             <button className="copy-button">Copy</button>
             <div className="see-more" >
-              <Link to={moreUrl} onClick={e => e.stopPropagation()}>
+              {showLink && (
+                <Link to={moreUrl} onClick={this.handleMoreClick}>
                 More
               </Link>
+              )}
+              
               </div>
           </div>
         </div>
