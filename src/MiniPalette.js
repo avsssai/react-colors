@@ -26,7 +26,7 @@ const styles = {
         display: "inline-block",
         margin: "0 auto",
         position: "relative",
-        marginBottom: "-3.5px"
+        marginBottom: "-4.5px"
     },
     title: {
         display: "flex",
@@ -44,9 +44,9 @@ const styles = {
     }
 }
 function MiniPalette (props) {
-    const { classes, paletteName, emoji, colors } = props;
+    const { classes, paletteName, emoji, colors,handlePaletteClick ,id} = props;
     return (
-        <div className={classes.root}>
+        <div className={classes.root} onClick={() => handlePaletteClick(id)}>
             <div className={classes.colors}>
                 {colors.map((color, i) => {
                     return <div className={classes.colorBox} style={{ backgroundColor: color.color }} key={color.name}></div>

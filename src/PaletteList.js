@@ -38,6 +38,14 @@ const styles = {
 }
 
 class PaletteList extends Component {
+    constructor(props){
+        super(props);
+        this.handlePaletteClick = this.handlePaletteClick.bind(this);
+    }
+    handlePaletteClick(id) {
+        // console.log('hello');
+        this.props.history.push(`/palette/${id}`)
+    }
     render () {
 
         let { palettes, classes } = this.props;
@@ -52,9 +60,7 @@ class PaletteList extends Component {
                     <div className={classes.palettes}>
                         {palettes.map((palette, i) => {
                             return (
-                                <Link to={`/palette/${palette.id}`}>
-                                    <MiniPalette  {...palette} />
-                                </Link>
+                                    <MiniPalette  {...palette} handlePaletteClick={this.handlePaletteClick} id={palette.id}/>
                             )
 
                         })}
