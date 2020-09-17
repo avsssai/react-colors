@@ -8,8 +8,10 @@
 	box-sizing: border-box;
 	margin-bottom: -4.5px;
 }
-
-.ColorBox .copy-button {
+.SingleColorPalette .ColorBox {
+	height: 50%;
+}
+.copy-button , .back-button {
 	width: 100px;
 	height: 30px;
 	position: absolute;
@@ -25,10 +27,13 @@
 	color: white;
 	text-transform: uppercase;
 	border: none;
-	opacity: 0;
 	cursor: pointer;
+	text-decoration:none;
 }
 
+.copy-button{
+	opacity: 0;
+}
 .ColorBox:hover .copy-button {
 	opacity: 1;
 	transition: 0.5s;
@@ -117,4 +122,9 @@
 .overlay-text p {
 	font-weight: 200;
 	font-size: 2rem;
+}
+
+.back-nav-box {
+	background-color: black;
+
 }

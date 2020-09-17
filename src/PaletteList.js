@@ -60,7 +60,7 @@ class PaletteList extends Component {
                     <div className={classes.palettes}>
                         {palettes.map((palette, i) => {
                             return (
-                                    <MiniPalette  {...palette} handlePaletteClick={this.handlePaletteClick} id={palette.id}/>
+                                    <MiniPalette  {...palette} handlePaletteClick={this.handlePaletteClick} id={palette.id} key={palette.id}/>
                             )
 
                         })}
