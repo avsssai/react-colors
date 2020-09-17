@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
 import ColorBox from "./ColorBox";
+import PaletteFooter from './PaletteFooter';
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
@@ -47,7 +48,10 @@ export default class Palette extends Component {
             handleOnAfterChange={this.handleOnAfterChange}
             colorFormat={colorFormat}
             handleChange={this.handleChange}
-            showing
+            showingSlider
+            handleClose={this.handleSnackbarClose}
+            handleSnackbarClose={this.handleSnackbarClose}
+            snackbarOpen={this.state.snackbarOpen}
           />
           <div className="Palette-colors">
             {palette.colors[level].map((color, i) => {
@@ -64,34 +68,9 @@ export default class Palette extends Component {
               );
             })}
           </div>
-          <Snackbar
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            autoHideDuration={4000}
-            open={this.state.snackbarOpen}
-            onClose={this.handleSnackbarClose}
-            message={`Format changed to ${colorFormat.toUpperCase()}`}
-            action={
-              <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={this.handleClose}
-              >
-                <CloseIcon fontSize="small" />
-              </IconButton>
-            }
-          />
+        
 
-          {/* Footer goes here */}
-          <footer className="footer">
-            <div className="footer-content">
-              <span className="palette-name">{palette.paletteName}</span>
-              <span className="palette-emoji">{palette.emoji}</span>
-            </div>
-          </footer>
+         <PaletteFooter paletteName={palette.paletteName} paletteEmoji={palette.emoji}/>
         </div>
       </div>
     );
