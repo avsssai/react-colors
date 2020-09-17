@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ColorBox from './ColorBox';
+import NavBar from './NavBar';
 import { withStyles } from '@material-ui/core/styles';
 import "./Palette.css";
 
@@ -48,6 +49,7 @@ class SingleColorPalette extends Component {
         })
         return (
             <div className={classes.palette}>
+                <NavBar showing={false} />
                 <h1>Single Color palette</h1>
                 <div className={classes.paletteColors}>
                     {colorBoxes}
