@@ -19,22 +19,22 @@ export default class Palette extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSnackbarClose = this.handleSnackbarClose.bind(this);
   }
-  handleOnAfterChange(level) {
+  handleOnAfterChange (level) {
     this.setState({ level });
   }
-  handleChange(format) {
+  handleChange (format) {
     this.setState({
       colorFormat: format,
       snackbarOpen: true,
     });
   }
-  handleSnackbarClose() {
+  handleSnackbarClose () {
     this.setState({
       snackbarOpen: false,
     });
   }
 
-  render() {
+  render () {
     const { palette } = this.props;
     let { level, colorFormat } = this.state;
     console.log(this.state.level);
@@ -47,6 +47,7 @@ export default class Palette extends Component {
             handleOnAfterChange={this.handleOnAfterChange}
             colorFormat={colorFormat}
             handleChange={this.handleChange}
+            showing
           />
           <div className="Palette-colors">
             {palette.colors[level].map((color, i) => {

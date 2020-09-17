@@ -24,7 +24,7 @@ export default class NavBar extends Component {
     this.props.handleChange(e.target.value);
   }
   render () {
-    const { level, handleOnAfterChange } = this.props;
+    const { level, handleOnAfterChange, showing } = this.props;
     return (
       <nav className="Navbar">
         <Link to="/">
@@ -33,17 +33,19 @@ export default class NavBar extends Component {
         <div className="slider-container">
 
           <span className='level'>Level {level}</span>
+          {showing && (
+            <div className="slider">
+              <Slider
+                min={100}
+                max={900}
+                defaultValue={level}
+                onAfterChange={handleOnAfterChange}
+                step={100}
+                className="slider"
+              />
+            </div>
 
-          <div className="slider">
-            <Slider
-              min={100}
-              max={900}
-              defaultValue={level}
-              onAfterChange={handleOnAfterChange}
-              step={100}
-              className="slider"
-            />
-          </div>
+          )}
         </div>
         <div className="select-container">
           <Select onChange={this.handleChange} value={this.state.colorFormat}>
