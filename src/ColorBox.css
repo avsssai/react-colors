@@ -50,13 +50,11 @@
 	font-size: 12px;
 }
 
-.ColorBox .see-more {
-	background: rgba(255, 255, 255, 0.3);
+.ColorBox .see-more-dark, .see-more-light {
 	position: absolute;
 	border: none;
 	bottom: 0%;
 	right: 0%;
-	color: white;
 	width: 60px;
 	height: 30px;
 	text-align: center;
@@ -64,7 +62,16 @@
 	text-transform: uppercase;
 }
 
-.ColorBox .see-more a {
+.see-more-dark {
+	background: rgba(255, 255, 255, 0.3);
+	color: white;
+}
+
+.see-more-light {
+	background-color: rgba(243,245,243,0.3);
+	color: rgba(0,0,0,0.3);
+}
+.ColorBox .see-more-dark a, .see-more-light a {
 	text-decoration: none;
 	color: inherit;
 	font-size: 14px;
@@ -127,4 +134,27 @@
 .back-nav-box {
 	background-color: black;
 
+}
+
+.isDarkColor {
+	color: white;
+}
+
+
+
+.isLightColor {
+	color: black;
+}
+
+.copied-banner-dark {
+	color: white;
+
+}
+
+.copied-banner-light{
+	color: black;
+}
+
+.dark-color {
+	color: black;
 }
