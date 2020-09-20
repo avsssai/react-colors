@@ -11,7 +11,8 @@
 .SingleColorPalette .ColorBox {
 	height: 50%;
 }
-.copy-button , .back-button {
+.copy-button,
+.back-button {
 	width: 100px;
 	height: 30px;
 	position: absolute;
@@ -28,17 +29,17 @@
 	text-transform: uppercase;
 	border: none;
 	cursor: pointer;
-	text-decoration:none;
+	text-decoration: none;
 }
 
-.copy-button{
+.copy-button {
 	opacity: 0;
 }
 .ColorBox:hover .copy-button {
 	opacity: 1;
 	transition: 0.5s;
 }
-.ColorBox .box-content {
+.box-content {
 	position: absolute;
 	padding: 10px;
 	width: 100%;
@@ -50,7 +51,8 @@
 	font-size: 12px;
 }
 
-.ColorBox .see-more-dark, .see-more-light {
+.ColorBox .see-more-dark,
+.see-more-light {
 	position: absolute;
 	border: none;
 	bottom: 0%;
@@ -68,10 +70,11 @@
 }
 
 .see-more-light {
-	background-color: rgba(243,245,243,0.3);
-	color: rgba(0,0,0,0.3);
+	background-color: rgba(243, 245, 243, 0.3);
+	color: rgba(0, 0, 0, 0.3);
 }
-.ColorBox .see-more-dark a, .see-more-light a {
+.ColorBox .see-more-dark a,
+.see-more-light a {
 	text-decoration: none;
 	color: inherit;
 	font-size: 14px;
@@ -133,26 +136,6 @@
 
 .back-nav-box {
 	background-color: black;
-
-}
-
-.isDarkColor {
-	color: white;
-}
-
-
-
-.isLightColor {
-	color: black;
-}
-
-.copied-banner-dark {
-	color: white;
-
-}
-
-.copied-banner-light{
-	color: black;
 }
 
 .dark-color {

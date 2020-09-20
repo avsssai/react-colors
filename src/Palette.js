@@ -62,15 +62,15 @@ export default class Palette extends Component {
                   key={i}
                   id={color.id}
                   moreUrl={`/palette/${palette.id}/${color.id}`}
-                  showLink
+                  showFullPalette
                   generateShades={this.generateShades}
                 />
               );
             })}
           </div>
-        
 
-         <PaletteFooter paletteName={palette.paletteName} paletteEmoji={palette.emoji}/>
+
+          <PaletteFooter paletteName={palette.paletteName} paletteEmoji={palette.emoji} />
         </div>
       </div>
     );
