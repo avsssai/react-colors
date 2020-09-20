@@ -30,9 +30,6 @@ const styles = {
     textTransform: "uppercase",
     fontSize: "12px",
   },
-  copiedBanner: {
-    color: props => chroma(props.background).luminance() >= 0.6 ? "black" : "white"
-  },
   colorName: {
     color: props => chroma(props.background).luminance() <= 0.1 ? "white" : "black"
   },
@@ -75,7 +72,61 @@ const styles = {
     cursor: "pointer",
     textDecoration: "none",
     opacity: "0"
-  }
+  },
+  copyOverlay: {
+    opacity: "0",
+    zIndex: "0",
+    width: "100%",
+    height: "100%",
+    transition: "transform 0.4s ease-in-out",
+    transform: "scale(0.1)"
+  },
+  showOverlay: {
+    opacity: "1",
+    transform: "scale(50)",
+    zIndex: "10",
+    position: "absolute"
+
+  },
+  overlayText: {
+    position: "fixed",
+    left: "0",
+    bottom: "0",
+    top: "0",
+    right: "0",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "2rem",
+    opacity: "0",
+    transform: "scale(0.1)",
+    color: "white",
+    "& h1": {
+      fontWeight: "400",
+      textShadow: "1px 2px black",
+      background: "rgba(255, 255, 255, 0.3)",
+      width: "100%",
+      marginBottom: "0",
+      padding: "1rem",
+
+    },
+    "& p": {
+      fontWeight: "200",
+      fontSize: "2rem"
+    }
+  },
+  showOverlayText: {
+    opacity: "1",
+    zIndex: "15",
+    transition: "all 0.4s ease-in-out",
+    transitionDelay: "0.1s",
+    transform: "scale(1)",
+    textAlign: "center"
+  },
+  copiedBanner: {
+    color: props => chroma(props.background).luminance() >= 0.6 ? "black" : "white"
+  },
 }
 
 class ColorBox extends Component {
@@ -106,12 +157,11 @@ class ColorBox extends Component {
   render () {
     const { background, name, moreUrl, showFullPalette, classes } = this.props;
     let { copied } = this.state;
-    let luminanceThreshold = chroma(background).luminance() <= 0.4;
     return (
       <CopyToClipboard text={background} onCopy={this.changeCopyState}>
         <div className={classes.ColorBox} style={{ backgroundColor: background }}>
-          <div className={`copy-overlay ${copied && 'show'}`} style={{ background }}></div>
-          <div className={`overlay-text ${copied && 'show-text'}`} >
+          <div className={`${classes.copyOverlay} ${copied && classes.showOverlay}`} style={{ background }}></div>
+          <div className={`${classes.overlayText} ${copied && classes.showOverlayText}`} >
             <h1 className={classes.copiedBanner}>COPIED!</h1>
             <p className={classes.copiedBanner}>{background}</p>
           </div>
