@@ -9,9 +9,12 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
-import "./NavBar.css";
+import { withStyles } from "@material-ui/styles";
 
-export default class NavBar extends Component {
+import styles from './styles/NavbarStyles';
+// import "./NavBar.css";
+
+class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,45 +22,45 @@ export default class NavBar extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
-  handleChange(e) {
+  handleChange (e) {
     this.setState({
       colorFormat: e.target.value,
     });
     console.log(e.target.value);
     this.props.handleChange(e.target.value);
   }
-  render() {
+  render () {
     const {
       level,
       handleOnAfterChange,
       handleClose,
       handleSnackbarClose,
       snackbarOpen,
-      showingSlider
+      showingSlider,
+      classes
     } = this.props;
     const { colorFormat } = this.state;
     return (
-      <nav className="Navbar">
+      <nav className={classes.Navbar}>
         <Link to="/">
-          <div className="logo">reactcolorpicker</div>
+          <div className={classes.logo}>reactcolorpicker</div>
         </Link>
         {showingSlider && (
           <div className="slider-container">
-            <span className="level">Level {level}</span>
+            <span className={classes.level}>Level {level}</span>
 
-            <div className="slider">
+            <div className={classes.slider}>
               <Slider
                 min={100}
                 max={900}
                 defaultValue={level}
                 onAfterChange={handleOnAfterChange}
                 step={100}
-                className="slider"
               />
             </div>
           </div>
         )}
-        <div className="select-container">
+        <div className={classes.selectContainer}>
           <Select onChange={this.handleChange} value={this.state.colorFormat}>
             <MenuItem value="hex">Hex - #ffffff</MenuItem>
             <MenuItem value="rgb">RGB - (255,255,255)</MenuItem>
@@ -88,3 +91,5 @@ export default class NavBar extends Component {
     );
   }
 }
+
+export default withStyles(styles)(NavBar);
