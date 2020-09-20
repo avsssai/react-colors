@@ -2,13 +2,24 @@ import React, { Component } from "react";
 import NavBar from "./NavBar";
 import ColorBox from "./ColorBox";
 import PaletteFooter from './PaletteFooter';
-import Snackbar from "@material-ui/core/Snackbar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import { withStyles } from '@material-ui/styles';
 
-import "./Palette.css";
+// import "./Palette.css";
 
-export default class Palette extends Component {
+const styles = {
+  Palette: {
+    height: "100vh",
+    overflowX: "hidden",
+    overflowY: "hidden",
+    display: "flex",
+    flexDirection: "column"
+  },
+  PaletteColors: {
+    height: "90%"
+  }
+}
+
+class Palette extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,13 +47,13 @@ export default class Palette extends Component {
   }
 
   render () {
-    const { palette } = this.props;
+    const { palette, classes } = this.props;
     let { level, colorFormat } = this.state;
     console.log(this.state.level);
     return (
       <div>
         {/* Header/Nav component goes here */}
-        <div className="Palette">
+        <div className={classes.Palette}>
           <NavBar
             level={level}
             handleOnAfterChange={this.handleOnAfterChange}
@@ -53,7 +64,7 @@ export default class Palette extends Component {
             handleSnackbarClose={this.handleSnackbarClose}
             snackbarOpen={this.state.snackbarOpen}
           />
-          <div className="Palette-colors">
+          <div className={classes.PaletteColors}>
             {palette.colors[level].map((color, i) => {
               return (
                 <ColorBox
@@ -76,3 +87,5 @@ export default class Palette extends Component {
     );
   }
 }
+
+export default withStyles(styles)(Palette);
