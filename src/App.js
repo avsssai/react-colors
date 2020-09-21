@@ -6,9 +6,16 @@ import { generatePalette } from './colorHelpers';
 import { Switch, Link, Route } from 'react-router-dom';
 import colorsSeeder from './colors-seeder';
 import SingleColorPalette from './SingleColorPalette';
+import NewPaletteForm from './NewPaletteForm';
+import {withStyles} from '@material-ui/styles';
+
+const styles = {
+
+}
 class App extends Component {
 
   render () {
+    let {styles} = this.props;
     console.log(generatePalette(seedColors[4]));
     let findPalette = (id) => {
       return seedColors.find((palette) => {
@@ -25,6 +32,7 @@ class App extends Component {
         {/* <Palette palette={generatePalette(seedColors[4])} /> */}
 
         <Switch>
+          <Route exact path="/palette/new" render={(routeProps) => <NewPaletteForm {...routeProps} />} />
           <Route exact path="/" render={(routeProps) => <PaletteList palettes={colorsSeeder} {...routeProps} />} />
           <Route exact path="/palette/:id" render={(routeProps) => <Palette palette={generatePalette(findPalette(routeProps.match.params.id))} {...routeProps} />} />
           {/* <Route exact path="/:palette/:id" render={(routeProps) => <h1>Individual Palette</h1>} /> */}
@@ -35,4 +43,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
