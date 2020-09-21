@@ -78,7 +78,7 @@ class NewPaletteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      open: true,
       // hex: "#ffffff",
       // hsl: {
       //   h: 0,
@@ -97,10 +97,12 @@ class NewPaletteForm extends Component {
       hsv: { h: 0, s: 0.6621999999999999, v: 0.4424, a: 1 },
       oldHue: 0,
       rgb: { r: 113, g: 38, b: 38, a: 1 },
+      colors: ["lightblue", "#e13433"]
     }
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.addNewColor = this.addNewColor.bind(this);
   }
   handleDrawerClose () {
     this.setState({
@@ -119,6 +121,11 @@ class NewPaletteForm extends Component {
     })
 
     console.log(color);
+  }
+  addNewColor () {
+    this.setState(state => ({
+      colors: [...state.colors, state.hex]
+    }))
   }
   render () {
     let { open, hex } = this.state;
@@ -169,7 +176,7 @@ class NewPaletteForm extends Component {
           </div>
           <Typography variant="h4">Design your palette</Typography>
           <ChromePicker color={this.state.rgb} onChangeComplete={this.handleChange} />
-          <Button variant="contained" color="primary" >Add Color</Button>
+          <Button variant="contained" color="primary" size="large" style={{ backgroundColor: `${this.state.hex}` }} onClick={this.addNewColor}>Add Color</Button>
         </Drawer>
         <main
           className={clsx(classes.content, {
@@ -178,6 +185,9 @@ class NewPaletteForm extends Component {
           style={{ background: this.state.rgb }}
         >
           <div className={classes.drawerHeader} />
+          {this.state.colors.map(color => {
+            return <div style={{ display: "flex", width: "100px", height: "100px", backgroundColor: color }} key={color}></div>
+          })}
         </main>
       </div>
     );
