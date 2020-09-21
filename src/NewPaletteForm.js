@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import { withStyles } from "@material-ui/core/styles";
+
+import DragableColorBox from './DragableColorBox';
 import { ChromePicker } from 'react-color';
+
+import { withStyles } from "@material-ui/core/styles";
 
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
@@ -58,6 +61,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
+    height:"calc(100vh - 64px)",
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -72,6 +76,10 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
+  dragableColorBoxes:{
+      height:"100%",
+      width:"100%"
+  }
 });
 
 class NewPaletteForm extends Component {
@@ -185,9 +193,12 @@ class NewPaletteForm extends Component {
           style={{ background: this.state.rgb }}
         >
           <div className={classes.drawerHeader} />
-          {this.state.colors.map(color => {
-            return <div style={{ display: "flex", width: "100px", height: "100px", backgroundColor: color }} key={color}></div>
-          })}
+          <div className={classes.dragableColorBoxes}>
+
+            {this.state.colors.map(color => {
+                return <DragableColorBox color={color} key={color} />
+            })}
+          </div>
         </main>
       </div>
     );
