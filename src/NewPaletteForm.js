@@ -88,19 +88,6 @@ class NewPaletteForm extends Component {
     super(props);
     this.state = {
       open: true,
-      // hex: "#ffffff",
-      // hsl: {
-      //   h: 0,
-      //   s: 0,
-      //   l: 100,
-      //   a: 1
-      // },
-      // rgb: {
-      //   r: 255,
-      //   g: 255,
-      //   b: 255,
-      //   a: 1,
-      // },
       hex: "#712626",
       hsl: { h: 0, s: 0.49499177754522344, l: 0.29592136, a: 1 },
       hsv: { h: 0, s: 0.6621999999999999, v: 0.4424, a: 1 },
@@ -115,6 +102,7 @@ class NewPaletteForm extends Component {
     this.addNewColor = this.addNewColor.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.savePalette = this.savePalette.bind(this);
   }
   componentDidMount() {
     ValidatorForm.addValidationRule('isColorNameUnique',value => {
@@ -171,6 +159,9 @@ class NewPaletteForm extends Component {
       colorInput:""
     })
   }
+  savePalette(){
+    this.props.savePalette(this.state.colors);
+  }
   render() {
     let { open, hex, colorInput } = this.state;
     let { classes } = this.props;
@@ -182,6 +173,7 @@ class NewPaletteForm extends Component {
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
           })}
+          color="default"
         >
           <Toolbar>
             <IconButton
@@ -196,6 +188,7 @@ class NewPaletteForm extends Component {
             <Typography variant="h6" noWrap>
               Persistent drawer
             </Typography>
+            <Button variant="contained" color="primary" onClick={this.savePalette}>Save Palette</Button>
           </Toolbar>
         </AppBar>
         <Drawer

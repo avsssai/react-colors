@@ -13,7 +13,9 @@ const styles = {
 
 }
 class App extends Component {
-
+savePalette(newPalette){
+  console.log(newPalette);
+}
   render () {
     let {styles} = this.props;
     console.log(generatePalette(seedColors[4]));
@@ -32,7 +34,7 @@ class App extends Component {
         {/* <Palette palette={generatePalette(seedColors[4])} /> */}
 
         <Switch>
-          <Route exact path="/palette/new" render={(routeProps) => <NewPaletteForm {...routeProps} />} />
+          <Route exact path="/palette/new" render={(routeProps) => <NewPaletteForm savePalette={this.savePalette} {...routeProps} />} />
           <Route exact path="/" render={(routeProps) => <PaletteList palettes={colorsSeeder} {...routeProps} />} />
           <Route exact path="/palette/:id" render={(routeProps) => <Palette palette={generatePalette(findPalette(routeProps.match.params.id))} {...routeProps} />} />
           {/* <Route exact path="/:palette/:id" render={(routeProps) => <h1>Individual Palette</h1>} /> */}
