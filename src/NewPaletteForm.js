@@ -20,7 +20,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { arrayMove } from 'react-sortable-hoc';
 import { Divider } from "@material-ui/core";
 import { random } from "chroma-js";
-
+import { Link } from 'react-router-dom';
 const drawerWidth = 400;
 
 const styles = (theme) => ({
@@ -260,10 +260,15 @@ class NewPaletteForm extends Component {
                   "This palette name already exists.",
                 ]}
               />
-
               <Button variant="contained" color="primary" type="submit">
                 Save Palette
               </Button>
+              <Link to="/">
+                <Button variant="contained" color="secondary" >
+                  Go Back
+                </Button>
+              </Link>
+
             </ValidatorForm>
           </Toolbar>
         </AppBar>
