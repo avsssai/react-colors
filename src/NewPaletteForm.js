@@ -160,7 +160,10 @@ class NewPaletteForm extends Component {
     })
   }
   savePalette(){
-    this.props.savePalette(this.state.colors);
+    let newName = "Test Palette"
+    let createdPalette = {paletteName:newName,id:newName.toLowerCase().replace(/ /g,'-'),emoji:"🎨",colors:this.state.colors};
+    this.props.savePalette(createdPalette);
+    this.props.history.push('/');
   }
   render() {
     let { open, hex, colorInput } = this.state;
@@ -257,7 +260,7 @@ class NewPaletteForm extends Component {
           <div className={classes.drawerHeader} />
           <div className={classes.dragableColorBoxes}>
             {this.state.colors.map((color) => {
-              return <DragableColorBox color={color} key={color} />;
+              return <DragableColorBox color={color} key={color.name} />;
             })}
           </div>
         </main>

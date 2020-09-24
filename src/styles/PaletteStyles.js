@@ -17,7 +17,7 @@ export default {
         position: "relative",
         cursor: "pointer",
         boxSizing: "border-box",
-        marginBottom: "-4.5px"
+        marginBottom: "-6.5px"
     },
     backNavBox: {
         background: "black"
