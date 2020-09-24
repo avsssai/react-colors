@@ -47,7 +47,7 @@ function DragableColorBox (props){
             <div className={classes.boxContent}>
 
              <span> {color.name}</span>
-             <span ><DeleteIcon className={classes.deleteIcon}/></span>   
+             <span ><DeleteIcon className={classes.deleteIcon} onClick={props.handleDelete}/></span>   
             </div>
         </div>
     )

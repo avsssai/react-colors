@@ -107,6 +107,7 @@ class NewPaletteForm extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.savePalette = this.savePalette.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
   componentDidMount() {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) => {
@@ -171,6 +172,11 @@ class NewPaletteForm extends Component {
     this.setState({
       colorInput: "",
     });
+  }
+  handleDelete(colorName){
+    this.setState({
+      colors:this.state.colors.filter(color => color.name !== colorName )
+    })
   }
 
   savePalette() {
@@ -308,7 +314,7 @@ class NewPaletteForm extends Component {
           <div className={classes.drawerHeader} />
           <div className={classes.dragableColorBoxes}>
             {this.state.colors.map((color) => {
-              return <DragableColorBox color={color} key={color.name} />;
+              return <DragableColorBox color={color} key={color.name} handleDelete={()=>this.handleDelete(color.name)} />;
             })}
           </div>
         </main>
