@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import DragableColorBox from "./DragableColorBox";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { ChromePicker } from "react-color";
-
+import DragableColorList from "./DragableColorList";
 import { withStyles } from "@material-ui/core/styles";
 
 import clsx from "clsx";
@@ -17,6 +17,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import {arrayMove} from 'react-sortable-hoc';
 import { Divider } from "@material-ui/core";
 
 const drawerWidth = 400;
@@ -127,12 +128,16 @@ class NewPaletteForm extends Component {
       }
       return true;
     });
-    ValidatorForm.addValidationRule("isPaletteNameUnique",(value)=>{
-      if(this.props.palettes.every(palette => palette.paletteName.toLowerCase() !== value.toLowerCase() )){
-        return true
+    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) => {
+      if (
+        this.props.palettes.every(
+          (palette) => palette.paletteName.toLowerCase() !== value.toLowerCase()
+        )
+      ) {
+        return true;
       }
       return false;
-    })
+    });
   }
 
   handleDrawerClose() {
@@ -173,11 +178,16 @@ class NewPaletteForm extends Component {
       colorInput: "",
     });
   }
-  handleDelete(colorName){
+  handleDelete(colorName) {
     this.setState({
-      colors:this.state.colors.filter(color => color.name !== colorName )
-    })
+      colors: this.state.colors.filter((color) => color.name !== colorName),
+    });
   }
+  onSortEnd = ({oldIndex, newIndex}) => {
+    this.setState(({colors}) => ({
+      colors: arrayMove(colors, oldIndex, newIndex),
+    }));
+  };
 
   savePalette() {
     let newName = this.state.paletteNameInput;
@@ -191,7 +201,7 @@ class NewPaletteForm extends Component {
     this.props.history.push("/");
   }
   render() {
-    let { open, hex, colorInput, paletteNameInput } = this.state;
+    let { open, hex, colorInput, paletteNameInput, colors } = this.state;
     let { classes } = this.props;
     return (
       <div className={classes.root}>
@@ -234,11 +244,7 @@ class NewPaletteForm extends Component {
                 ]}
               />
 
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-              >
+              <Button variant="contained" color="primary" type="submit">
                 Save Palette
               </Button>
             </ValidatorForm>
@@ -313,9 +319,12 @@ class NewPaletteForm extends Component {
         >
           <div className={classes.drawerHeader} />
           <div className={classes.dragableColorBoxes}>
-            {this.state.colors.map((color) => {
-              return <DragableColorBox color={color} key={color.name} handleDelete={()=>this.handleDelete(color.name)} />;
-            })}
+            <DragableColorList
+              colors={colors}
+              handleDelete={this.handleDelete}
+              axis="xy"
+              onSortEnd={this.onSortEnd}
+            />
           </div>
         </main>
       </div>
