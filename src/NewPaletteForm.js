@@ -127,7 +127,7 @@ class NewPaletteForm extends Component {
       return true;
     });
     ValidatorForm.addValidationRule("isPaletteNameUnique",(value)=>{
-      if(this.props.palettes.every(palette => palette.paletteName !== value )){
+      if(this.props.palettes.every(palette => palette.paletteName.toLowerCase() !== value.toLowerCase() )){
         return true
       }
       return false;
