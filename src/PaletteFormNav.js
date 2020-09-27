@@ -15,11 +15,16 @@ import { Link } from 'react-router-dom';
 const drawerWidth = 400;
 
 const styles = (theme) => ({
+    root: {
+        display: "flex"
+    },
     appBar: {
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        flexDirection: "row",
+        justifyContent: "space-between"
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -34,6 +39,9 @@ const styles = (theme) => ({
     },
     hide: {
         display: "none",
+    },
+    buttons: {
+        display: "flex"
     }
 });
 
@@ -75,7 +83,7 @@ class PaletteFormNav extends Component {
         const { classes, open } = this.props;
         const { paletteNameInput } = this.state;
         return (
-            <div className="PaletteFormNav">
+            <div className="root">
                 <CssBaseline />
                 <AppBar
                     position="fixed"
@@ -94,9 +102,13 @@ class PaletteFormNav extends Component {
                         >
                             <MenuIcon />
                         </IconButton>
+
                         <Typography variant="h6" noWrap>
-                            Persistent drawer
+                            Create a Palette
                         </Typography>
+
+                    </Toolbar>
+                    <div className={classes.buttons}>
 
                         <ValidatorForm
                             onSubmit={this.savePalette}
@@ -114,17 +126,18 @@ class PaletteFormNav extends Component {
                                     "This palette name already exists.",
                                 ]}
                             />
+
                             <Button variant="contained" color="primary" type="submit">
                                 Save Palette
-                            </Button>
-                            <Link to="/">
-                                <Button variant="contained" color="secondary" >
-                                    Go Back
                                 </Button>
-                            </Link>
-
                         </ValidatorForm>
-                    </Toolbar>
+
+                        <Link to="/">
+                            <Button variant="contained" color="secondary" >
+                                Go Back
+                                    </Button>
+                        </Link>
+                    </div>
                 </AppBar>
 
             </div>
