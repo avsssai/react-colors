@@ -25,6 +25,7 @@ const styles = (theme) => ({
     }),
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -41,7 +42,13 @@ const styles = (theme) => ({
     display: "none",
   },
   buttons: {
-    display: "flex",
+    margin: "1rem",
+    "& a": {
+      textDecoration: "none",
+    },
+  },
+  button: {
+    margin: "0 0.5rem",
   },
 });
 
@@ -106,16 +113,31 @@ class PaletteFormNav extends Component {
           </Toolbar>
 
           <div className={classes.buttons}>
-            <PaletteMetaForm
-              savePalette={this.savePalette}
-              palettes={palettes}
-            />
-            <Link to="/">
-              <Button variant="contained" color="secondary">
+            <Link to="/" className={classes.link}>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
                 Go Back
               </Button>
             </Link>
+            <Button
+              onClick={this.dialogOpen}
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              Save Palette
+            </Button>
           </div>
+          {this.state.open && (
+            <PaletteMetaForm
+              savePalette={this.savePalette}
+              palettes={palettes}
+              handleClose={this.handleClose}
+            />
+          )}
         </AppBar>
       </div>
     );

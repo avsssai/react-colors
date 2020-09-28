@@ -13,7 +13,7 @@ class PaletteMetaForm extends Component {
     super(props);
     this.state = {
       paletteNameInput: "",
-      open: false,
+      open: true,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.savePalette = this.savePalette.bind(this);
@@ -55,54 +55,46 @@ class PaletteMetaForm extends Component {
     // const {  } = this.props;
     const { paletteNameInput, open } = this.state;
     return (
-      <div>
-        <div>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleClickOpen}
-          >
-            Save Palette
-          </Button>
-          <Dialog
-            open={open}
-            onClose={this.handleClose}
-            aria-labelledby="form-dialog-title"
-          >
-            <DialogTitle id="form-dialog-title">Save Palette</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Please enter the name of palette you want to save.
-              </DialogContentText>
-              <ValidatorForm
-                onSubmit={this.savePalette}
-                onError={(error) => console.log(error)}
-                ref="form"
-                autofocus
-              >
-                <TextValidator
-                  label="Palette Name"
-                  onChange={this.handleInputChange}
-                  validators={["required", "isPaletteNameUnique"]}
-                  value={paletteNameInput}
-                  name="paletteNameInput"
-                  errorMessages={[
-                    "Every Palette needs a name!",
-                    "This palette name already exists.",
-                  ]}
-                />
-                <Button type="submit" color="secondary">
-                  Save Palette
-                </Button>
-                <Button onClick={this.handleClose} color="primary">
-                  Cancel
-                </Button>
-              </ValidatorForm>
-            </DialogContent>
-            <DialogActions></DialogActions>
-          </Dialog>
-        </div>
-      </div>
+      <Dialog
+        open={open}
+        onClose={this.props.handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Choose a palette name.</DialogTitle>
+        <ValidatorForm
+          onSubmit={this.savePalette}
+          onError={(error) => console.log(error)}
+          ref="form"
+          autoFocus
+        >
+          <DialogContent>
+            <DialogContentText>
+              Please enter the name of palette you want to save.
+            </DialogContentText>
+            <TextValidator
+              label="Palette Name"
+              onChange={this.handleInputChange}
+              validators={["required", "isPaletteNameUnique"]}
+              value={paletteNameInput}
+              name="paletteNameInput"
+              fullWidth
+              margin="normal"
+              errorMessages={[
+                "Every Palette needs a name!",
+                "This palette name already exists.",
+              ]}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button type="submit" color="secondary">
+              Save Palette
+            </Button>
+            <Button onClick={this.props.handleClose} color="primary">
+              Cancel
+            </Button>
+          </DialogActions>
+        </ValidatorForm>
+      </Dialog>
     );
   }
 }
