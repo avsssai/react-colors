@@ -4,27 +4,8 @@ import { ChromePicker } from "react-color";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import styles from "./styles/ColorPickerFormStyles";
 
-const styles = {
-  picker: {
-    width: "100% !important",
-    marginTop: "2rem",
-  },
-  pickerForm: {
-    width: "100% !important",
-  },
-  addColor: {
-    width: "100%",
-    padding: "1rem",
-    marginTop: "1rem",
-    fontSize: "1.5rem",
-  },
-  newColorForm: {
-    width: "100%",
-    fontSize: "1.5rem",
-    marginTop: "1rem",
-  },
-};
 class ColorPickerForm extends Component {
   constructor(props) {
     super(props);
