@@ -132,14 +132,14 @@ class PaletteFormNav extends Component {
               Save Palette
             </Button>
           </div>
-          {this.state.open && (
-            <PaletteMetaForm
-              savePalette={this.savePalette}
-              palettes={palettes}
-              handleClose={this.handleClose}
-            />
-          )}
         </AppBar>
+        {this.state.open && (
+          <PaletteMetaForm
+            savePalette={this.savePalette}
+            palettes={palettes}
+            handleClose={this.handleClose}
+          />
+        )}
       </div>
     );
   }
