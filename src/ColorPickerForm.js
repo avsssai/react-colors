@@ -6,7 +6,21 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 const styles = {
-
+    picker: {
+        width: "100% !important",
+        marginTop: "2rem"
+    },
+    addColor: {
+        width: "100%",
+        padding: "1rem",
+        marginTop: "1rem",
+        fontSize: "1.5rem"
+    },
+    newColorForm: {
+        width: "100%",
+        fontSize: "1.5rem",
+        marginTop: "1rem"
+    }
 };
 class ColorPickerForm extends Component {
     constructor(props) {
@@ -69,12 +83,13 @@ class ColorPickerForm extends Component {
         const { classes, paletteFullConditon } = this.props;
 
         return (
-            <div>
+            <div className={classes.pickerForm}>
                 <Typography variant="h4">Design your palette</Typography>
 
                 <ChromePicker
                     color={this.state.rgb}
                     onChangeComplete={this.handleChange}
+                    className={classes.picker}
                 />
                 <ValidatorForm
                     onSubmit={() => this.handleSubmit(colorInput)}
@@ -92,6 +107,8 @@ class ColorPickerForm extends Component {
                             "This color name already exists.",
                             "This color already exists.",
                         ]}
+                        className={classes.newColorForm}
+                        variant="filled"
                     />
 
                     <Button
@@ -106,6 +123,7 @@ class ColorPickerForm extends Component {
                         // onClick={this.addNewColor}
                         disabled={paletteFullConditon}
                         type="submit"
+                        className={classes.addColor}
                     >
                         {paletteFullConditon ? "Palette Full" : "Add Color"}
                     </Button>
