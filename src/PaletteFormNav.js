@@ -57,6 +57,7 @@ class PaletteFormNav extends Component {
     super(props);
     this.state = {
       open: false,
+      openEmojiPicker: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.savePalette = this.savePalette.bind(this);
