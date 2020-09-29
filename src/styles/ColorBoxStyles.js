@@ -16,9 +16,9 @@ export default {
     },
     [sizes.below("lg")]: {
       width: "25%",
-      height: (props) => (props.showFullPalette ? "20%" : "25%"),
+      height: (props) => (props.showFullPalette ? "20%" : "33.33%"),
     },
-    [sizes.below("sm")]: {
+    [sizes.below("md")]: {
       width: "50%",
       height: (props) => (props.showFullPalette ? "10%" : "20%"),
     },
@@ -129,6 +129,9 @@ export default {
       padding: "1rem",
       color: (props) =>
         chroma(props.background).luminance() >= 0.6 ? "black" : "white",
+      [sizes.below("xs")]: {
+        fontSize: "3rem",
+      },
     },
     "& p": {
       fontWeight: "200",
