@@ -5,7 +5,7 @@ export default {
     border: "1px solid black",
     padding: "0.5rem",
     position: "relative",
-    overflow: "hidder",
+    overflow: "hidden",
     cursor: "pointer",
     "&:hover svg": {
       opacity: "1",
@@ -24,7 +24,7 @@ export default {
     display: "inline-block",
     margin: "0 auto",
     position: "relative",
-    marginBottom: "-4.5px",
+    marginBottom: "-5.5px",
   },
   title: {
     display: "flex",
