@@ -83,6 +83,7 @@ class PaletteFormNav extends Component {
                 variant="contained"
                 color="secondary"
                 className={classes.button}
+                size="small"
               >
                 Go Back
               </Button>
@@ -91,9 +92,10 @@ class PaletteFormNav extends Component {
               onClick={this.dialogOpen}
               variant="contained"
               color="primary"
+              size="small"
               className={classes.button}
             >
-              Save Palette
+              Save
             </Button>
           </div>
         </AppBar>

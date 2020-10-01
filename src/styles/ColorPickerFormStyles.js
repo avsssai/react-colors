@@ -4,7 +4,7 @@ const styles = {
     marginTop: "2rem",
   },
   pickerForm: {
-    width: "100% !important",
+    width: "90% !important",
   },
   addColor: {
     width: "100%",
