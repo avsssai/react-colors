@@ -2,6 +2,15 @@ import sizes from "./sizes";
 import bg from "./bg.svg";
 
 export default {
+  "@global": {
+    ".fade-exit": {
+      opacity: "1",
+    },
+    ".fade-exit-active": {
+      opacity: "0",
+      transition: "opacity 500ms ease-out",
+    },
+  },
   root: {
     backgroundColor: "#ffff00",
     backgroundImage: `url(${bg})`,
@@ -42,6 +51,13 @@ export default {
     "& a": {
       color: "white",
     },
+  },
+  fadeExit: {
+    opacity: "1",
+  },
+  fadeExitActive: {
+    opacity: "0",
+    transition: "opacity 300ms",
   },
   palettes: {
     boxSizing: "border-box",

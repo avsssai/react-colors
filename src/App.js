@@ -63,7 +63,6 @@ class App extends Component {
   }
   render() {
     let { styles } = this.props;
-    console.log(generatePalette(this.state.palettes[4]));
 
     let linksOnly = (arr) => {
       return arr.reduce((acc, el) => {
