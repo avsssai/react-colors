@@ -7,11 +7,11 @@ import styles from "./styles/MiniPaletteStyles";
 class MiniPalette extends Component {
   constructor(props) {
     super(props);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.handleDialogOpen = this.handleDialogOpen.bind(this);
   }
-  handleDelete(e) {
+  handleDialogOpen(e) {
     e.stopPropagation();
-    this.props.handleDelete(this.props.id);
+    this.props.handleDialogOpen(this.props.id);
   }
   render() {
     const {
@@ -41,7 +41,7 @@ class MiniPalette extends Component {
         <span>
           <DeleteIcon
             className={classes.deleteIcon}
-            onClick={this.handleDelete}
+            onClick={this.handleDialogOpen}
             style={{ transition: "all 0.3s ease-in-out" }}
           />
         </span>
