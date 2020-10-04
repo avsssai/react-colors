@@ -14,6 +14,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 // import { arrayMove } from "react-sortable-hoc";
 import arrayMove from 'array-move';
 import { Divider } from "@material-ui/core";
+import seedColors from './colors-seeder';
 
 import styles from "./styles/NewPaletteFormStyles";
 
@@ -25,7 +26,7 @@ class NewPaletteForm extends Component {
     super(props);
     this.state = {
       open: true,
-      colors: this.props.palettes[0].colors,
+      colors: seedColors[0].colors,
       paletteNameInput: "",
     };
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
@@ -107,9 +108,21 @@ class NewPaletteForm extends Component {
     });
   }
   addRandomColor () {
-    let random = (array) => array[Math.floor(Math.random() * array.length)];
-    let randomPalette = random(this.props.palettes);
-    let randomColor = random(randomPalette.colors);
+    // let random = (array) => array[Math.floor(Math.random() * array.length)];
+    let allColors = seedColors.map(p => p.colors).flat();
+    console.log(allColors.length);
+    let isDuplicate = true;
+    let rand;
+    let randomColor;
+    while (isDuplicate) {
+      rand = Math.floor(Math.random() * allColors.length);
+      randomColor = allColors[rand];
+      // randomColor = random(allColors);
+      isDuplicate = this.state.colors.some(color => color.name === randomColor.name)
+
+    }
+    console.log(randomColor)
+    // let randomColor = random(randomPalette.colors);
     this.setState({
       colors: [...this.state.colors, randomColor],
     });
