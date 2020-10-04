@@ -13,18 +13,18 @@ export default {
   },
   colors: {
     backgroundColor: "#dae1e4",
-    height: "100px",
+    height: "120px",
     width: "100%",
     borderRadius: "5px",
     overflow: "hidden",
   },
   colorBox: {
-    height: "25%",
+    height: "26.5%",
     width: "20%",
     display: "inline-block",
     margin: "0 auto",
     position: "relative",
-    marginBottom: "-3.5px",
+    marginBottom: "-5.5px",
   },
   title: {
     display: "flex",

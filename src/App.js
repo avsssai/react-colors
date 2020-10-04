@@ -1,17 +1,17 @@
 import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+
 import PaletteList from "./PaletteList";
 import Palette from "./Palette";
-import seedColors from "./colors-seeder";
-import { generatePalette } from "./colorHelpers";
-import { Switch, Link, Route } from "react-router-dom";
-import colorsSeeder from "./colors-seeder";
 import SingleColorPalette from "./SingleColorPalette";
 import NewPaletteForm from "./NewPaletteForm";
 import Page from "./Page";
-import { withStyles } from "@material-ui/styles";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+
+import seedColors from "./colors-seeder";
+import { generatePalette } from "./colorHelpers";
+
 import "./Page.css";
-const styles = {};
 
 class App extends Component {
   constructor(props) {
@@ -64,13 +64,6 @@ class App extends Component {
     );
   }
   render () {
-    let { styles } = this.props;
-
-    let linksOnly = (arr) => {
-      return arr.reduce((acc, el) => {
-        return acc.concat({ paletteName: el.paletteName, id: el.id });
-      }, []);
-    };
     return (
       <div>
         {/* <Palette palette={generatePalette(seedColors[4])} /> */}
@@ -145,4 +138,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(styles)(App);
+export default (App);
