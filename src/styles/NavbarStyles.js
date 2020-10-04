@@ -44,7 +44,7 @@ export default {
     "& .rc-slider-rail": {
       height: 8,
     },
-    [sizes.below("xs")]: {
+    [sizes.below("sm")]: {
       width: 100,
     },
   },
