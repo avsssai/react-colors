@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import PaletteMetaForm from "./PaletteMetaForm";
 import { withStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -18,7 +17,7 @@ class PaletteFormNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      openDialog: false,
       openEmojiPicker: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -27,28 +26,28 @@ class PaletteFormNav extends Component {
     this.dialogOpen = this.dialogOpen.bind(this);
   }
 
-  handleInputChange(e) {
+  handleInputChange (e) {
     this.setState({
       paletteNameInput: e.target.value,
     });
   }
 
-  savePalette(paletteName) {
+  savePalette (paletteName) {
     this.props.savePalette(paletteName);
   }
-  dialogOpen() {
+  dialogOpen () {
     this.setState({
-      open: true,
+      openDialog: true,
     });
   }
-  handleClose() {
+  handleClose () {
     this.setState({
-      open: false,
+      openDialog: false,
     });
   }
-  render() {
-    const { classes, open, palettes } = this.props;
-    // const { paletteNameInput } = this.state;
+  render () {
+    const { classes, palettes, open } = this.props;
+    const { openDialog } = this.state;
     return (
       <div className="root">
         <CssBaseline />
@@ -99,7 +98,7 @@ class PaletteFormNav extends Component {
             </Button>
           </div>
         </AppBar>
-        {this.state.open && (
+        {openDialog && (
           <PaletteMetaForm
             savePalette={this.savePalette}
             palettes={palettes}

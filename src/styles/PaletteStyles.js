@@ -34,14 +34,12 @@ export default {
       transform: "translate(-50%, -50%)",
       textAlign: "center",
       outline: "none",
-      backgroundColor: "rgba(255, 255, 255, 0.3)",
       fontSize: "1rem",
       lineHeight: "30px",
       textTransform: "uppercase",
       border: "none",
       cursor: "pointer",
       textDecoration: "none",
-      textAlign: "center",
     },
 
     [sizes.below("lg")]: {

@@ -22,7 +22,7 @@ class PaletteMetaForm extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.showEmoji = this.showEmoji.bind(this);
   }
-  componentDidMount() {
+  componentDidMount () {
     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) => {
       if (
         this.props.palettes.every(
@@ -34,12 +34,12 @@ class PaletteMetaForm extends Component {
       return false;
     });
   }
-  handleInputChange(e) {
+  handleInputChange (e) {
     this.setState({
       paletteNameInput: e.target.value,
     });
   }
-  savePalette(emoji) {
+  savePalette (emoji) {
     let newPalette = {
       paletteName: this.state.paletteNameInput,
       emoji: emoji.native,
@@ -48,40 +48,40 @@ class PaletteMetaForm extends Component {
     console.log(newPalette);
     this.props.handleClose();
   }
-  showEmoji() {
+  showEmoji () {
     this.setState({
       stage: "emoji",
     });
   }
-  handleClickOpen() {
+  handleClickOpen () {
     this.setState({
       open: true,
     });
   }
-  handleClose() {
+  handleClose () {
     this.setState({
       open: false,
     });
   }
 
-  render() {
-    // const {  } = this.props;
+  render () {
+    const { handleClose } = this.props;
     const { paletteNameInput, stage } = this.state;
     return (
       <div>
         <Dialog
-          open={this.state.stage === "emoji"}
-          onClose={this.props.handleClose}
+          open={stage === "emoji"}
+          onClose={handleClose}
         >
           <DialogTitle id="form-dialog-title">Pick an emoji!</DialogTitle>
           <Picker onSelect={this.savePalette} title="Pick your emoji…" />
-          <Button onClick={this.props.handleClose} color="primary">
+          <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
         </Dialog>
         <Dialog
-          open={this.state.stage === "form"}
-          onClose={this.props.handleClose}
+          open={stage === "form"}
+          onClose={handleClose}
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">
@@ -113,7 +113,7 @@ class PaletteMetaForm extends Component {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.props.handleClose} color="secondary">
+              <Button onClick={handleClose} color="secondary">
                 Cancel
               </Button>
               <Button type="submit" color="primary">

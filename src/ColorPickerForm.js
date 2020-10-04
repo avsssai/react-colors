@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { ChromePicker } from "react-color";
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import styles from "./styles/ColorPickerFormStyles";
 
@@ -20,7 +19,7 @@ class ColorPickerForm extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  componentDidMount() {
+  componentDidMount () {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) => {
       if (
         this.props.colors.some(
@@ -39,19 +38,19 @@ class ColorPickerForm extends Component {
       return true;
     });
   }
-  handleChange(color, event) {
+  handleChange (color, event) {
     this.setState({
       hex: color.hex,
       rgb: color.rgb,
     });
   }
 
-  handleInputChange(e) {
+  handleInputChange (e) {
     this.setState({
       colorInput: e.target.value,
     });
   }
-  handleSubmit() {
+  handleSubmit () {
     let newColor = {
       name: this.state.colorInput,
       color: this.state.hex,
@@ -61,8 +60,8 @@ class ColorPickerForm extends Component {
     });
     this.props.addNewColor(newColor);
   }
-  render() {
-    const { colorInput } = this.state;
+  render () {
+    const { colorInput, hex } = this.state;
     const { classes, paletteFullConditon } = this.props;
 
     return (
@@ -100,7 +99,7 @@ class ColorPickerForm extends Component {
             style={{
               backgroundColor: paletteFullConditon
                 ? "grey"
-                : `${this.state.hex}`,
+                : `${hex}`,
             }}
             // onClick={this.addNewColor}
             disabled={paletteFullConditon}

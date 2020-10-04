@@ -17,7 +17,7 @@ class SingleColorPalette extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSnackbarClose = this.handleSnackbarClose.bind(this);
   }
-  generateShades(palette, colorId) {
+  generateShades (palette, colorId) {
     let shades = [];
     let allColors = palette.colors;
     for (let i in allColors) {
@@ -27,24 +27,25 @@ class SingleColorPalette extends Component {
     console.log(shades.slice(1));
     return shades.slice(1);
   }
-  handleChange(format) {
+  handleChange (format) {
     this.setState({
       colorFormat: format,
       snackbarOpen: true,
     });
   }
-  handleSnackbarClose() {
+  handleSnackbarClose () {
     this.setState({
       snackbarOpen: false,
     });
   }
-  render() {
-    let { classes } = this.props;
+  render () {
+    const { classes } = this.props;
+    const { colorFormat } = this.state;
     let { paletteName, emoji, id } = this.props.palette;
     let colorBoxes = this._getShades.map((color) => {
       return (
         <ColorBox
-          background={color[this.state.colorFormat]}
+          background={color[colorFormat]}
           name={color.name}
           key={color.name}
           showLink={false}

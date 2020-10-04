@@ -37,7 +37,6 @@ const styles = {
     bottom: "0%",
     letterSpacing: "1px",
     // color: props => chroma(props.background).luminance() >= 0.6 ? "black" : "white",
-    color: "black",
     textTransform: "uppercase",
     fontSize: "12px",
 

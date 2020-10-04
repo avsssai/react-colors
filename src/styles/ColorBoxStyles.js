@@ -81,7 +81,7 @@ export default {
     transform: "translate(-50%, -50%)",
     textAlign: "center",
     outline: "none",
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    // backgroundColor: "rgba(255, 255, 255, 0.3)",
     fontSize: "1rem",
     lineHeight: "20px",
     textTransform: "uppercase",

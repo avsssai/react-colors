@@ -11,7 +11,8 @@ import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { arrayMove } from "react-sortable-hoc";
+// import { arrayMove } from "react-sortable-hoc";
+import arrayMove from 'array-move';
 import { Divider } from "@material-ui/core";
 
 import styles from "./styles/NewPaletteFormStyles";
@@ -39,17 +40,17 @@ class NewPaletteForm extends Component {
     this.addRandomColor = this.addRandomColor.bind(this);
   }
 
-  handleDrawerClose() {
+  handleDrawerClose () {
     this.setState({
       open: false,
     });
   }
-  handleDrawerOpen() {
+  handleDrawerOpen () {
     this.setState({
       open: true,
     });
   }
-  handleChange(color, event) {
+  handleChange (color, event) {
     this.setState({
       rgb: color.rgb,
       hex: color.hex,
@@ -57,7 +58,7 @@ class NewPaletteForm extends Component {
 
     console.log(color);
   }
-  addNewColor(newColor) {
+  addNewColor (newColor) {
     // let newColor = {
     //   color: this.state.hex,
     //   name: this.state.colorInput,
@@ -67,7 +68,7 @@ class NewPaletteForm extends Component {
       colors: [...state.colors, newColor],
     }));
   }
-  handleInputChange(e) {
+  handleInputChange (e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -78,18 +79,18 @@ class NewPaletteForm extends Component {
   //   //   colorInput: "",
   //   // });
   // }
-  handleDelete(colorName) {
+  handleDelete (colorName) {
     this.setState({
       colors: this.state.colors.filter((color) => color.name !== colorName),
     });
   }
   onSortEnd = ({ oldIndex, newIndex }) => {
     this.setState(({ colors }) => ({
-      colors: arrayMove(colors, oldIndex, newIndex),
+      colors: arrayMove(colors, oldIndex, newIndex)
     }));
   };
 
-  savePalette(newPalette) {
+  savePalette (newPalette) {
     // let newName = this.state.paletteNameInput;
     let createdPalette = {
       paletteName: newPalette.paletteName,
@@ -100,12 +101,12 @@ class NewPaletteForm extends Component {
     this.props.savePalette(createdPalette);
     this.props.history.push("/");
   }
-  clearPalette() {
+  clearPalette () {
     this.setState({
       colors: [],
     });
   }
-  addRandomColor() {
+  addRandomColor () {
     let random = (array) => array[Math.floor(Math.random() * array.length)];
     let randomPalette = random(this.props.palettes);
     let randomColor = random(randomPalette.colors);
@@ -113,7 +114,7 @@ class NewPaletteForm extends Component {
       colors: [...this.state.colors, randomColor],
     });
   }
-  render() {
+  render () {
     let { open, colors } = this.state;
     let { classes, maxColors, palettes } = this.props;
     let paletteFullConditon = colors.length >= maxColors;
