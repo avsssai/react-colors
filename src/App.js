@@ -25,7 +25,7 @@ class App extends Component {
     this.findPalette = this.findPalette.bind(this);
     this.handlePaletteDelete = this.handlePaletteDelete.bind(this);
   }
-  savePalette(newPalette) {
+  savePalette (newPalette) {
     // console.log(createdPalette);
 
     this.setState(
@@ -40,7 +40,7 @@ class App extends Component {
     console.log(newPalette);
   }
 
-  syncToLocalStorage() {
+  syncToLocalStorage () {
     window.localStorage.setItem(
       "palettes",
       JSON.stringify(this.state.palettes)
@@ -52,7 +52,7 @@ class App extends Component {
       return palette.id === id;
     });
   };
-  handlePaletteDelete(paletteId) {
+  handlePaletteDelete (paletteId) {
     // alert(paletteId);
     this.setState(
       {
@@ -63,7 +63,7 @@ class App extends Component {
       () => this.syncToLocalStorage()
     );
   }
-  render() {
+  render () {
     let { styles } = this.props;
 
     let linksOnly = (arr) => {
@@ -77,7 +77,7 @@ class App extends Component {
         <Route
           render={({ location }) => (
             <TransitionGroup>
-              <CSSTransition key={location.key} classNames="page" timeout={300}>
+              <CSSTransition key={location.key} classNames="page" timeout={600}>
                 <Switch location={location}>
                   <Route
                     exact
