@@ -1,19 +1,19 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 import styles from "./styles/MiniPaletteStyles";
 
-class MiniPalette extends Component {
+class MiniPalette extends PureComponent {
   constructor(props) {
     super(props);
     this.handleDialogOpen = this.handleDialogOpen.bind(this);
   }
-  handleDialogOpen(e) {
+  handleDialogOpen (e) {
     e.stopPropagation();
     this.props.handleDialogOpen(this.props.id);
   }
-  render() {
+  render () {
     const {
       classes,
       paletteName,
@@ -22,6 +22,7 @@ class MiniPalette extends Component {
       handlePaletteClick,
       id,
     } = this.props;
+    console.log("Rendering : ", paletteName);
     return (
       <div className={classes.root} onClick={() => handlePaletteClick(id)}>
         <div className={classes.colors}>

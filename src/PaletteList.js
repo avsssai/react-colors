@@ -29,30 +29,30 @@ class PaletteList extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleDialogOpen = this.handleDialogOpen.bind(this);
   }
-  handlePaletteClick(id) {
+  handlePaletteClick (id) {
     // console.log('hello');
     this.props.history.push(`/palette/${id}`);
   }
-  handlePaletteDelete() {
+  handlePaletteDelete () {
     this.props.handlePaletteDelete(this.state.toDelete);
     this.setState({
       open: false,
       toDelete: null,
     });
   }
-  handleClose() {
+  handleClose () {
     this.setState({
       open: false,
       toDelete: null,
     });
   }
-  handleDialogOpen(id) {
+  handleDialogOpen (id) {
     this.setState({
       open: true,
       toDelete: id,
     });
   }
-  render() {
+  render () {
     let { palettes, classes } = this.props;
     let { open } = this.state;
 
